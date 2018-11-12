@@ -1,2 +1,0 @@
-# spriteGenerator
-Created with CodeSandbox
