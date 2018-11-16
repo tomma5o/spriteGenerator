@@ -1,15 +1,21 @@
 import SpriteGenerator from "./SpriteGenerator";
 
 const canvas = document.getElementById("canvas");
-const sampleMail = "tptommy1992gmailcom";
-const sampleUserMail = "tptommy1992";
-const mailLength = sampleUserMail.length.toString();
-const getValueMail =
-  mailLength.length > 1
-    ? mailLength.split("").reduce((acc, e) => acc + Number(e), 0)
-    : Number(mailLength);
+const downloadBtn = document.getElementById("download_btn");
+const reloadBtn = document.getElementById("reload_btn");
 
-new SpriteGenerator(canvas, {
-  cellXrow: 5,
-  colorPalette: getValueMail
-}).init();
+const sprite = new SpriteGenerator(canvas, {
+  cellXrow: 5
+});
+sprite.init();
+
+reloadBtn.addEventListener("click", () => {
+  sprite.init();
+});
+
+downloadBtn.addEventListener("click", () => {
+  let link = document.createElement("a");
+  link.download = "generated.png";
+  link.href = document.getElementById("canvas").toDataURL("image/png");
+  link.click();
+});

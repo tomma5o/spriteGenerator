@@ -3,11 +3,10 @@ import palette from "../utils/palette";
 
 export default class SpriteGenerator {
   constructor(canvas, settings) {
-    const { cellXrow, colorPalette } = settings;
+    const { cellXrow } = settings;
     this.ctx = canvas.getContext("2d");
     this.settings = {
       cellXrow,
-      colorPalette,
       cellSize: canvas.width / cellXrow,
       rowWidth: canvas.width
     };
@@ -39,8 +38,8 @@ export default class SpriteGenerator {
   }
 
   draw(cellSize) {
-    const { rowWidth, colorPalette } = this.settings;
-    const color = palette[colorPalette];
+    const { rowWidth } = this.settings;
+    const color = palette[random(0, 4)];
     this.ctx.clearRect(0, 0, rowWidth, rowWidth);
 
     for (let j = 0; j < cellSize; j++) {
